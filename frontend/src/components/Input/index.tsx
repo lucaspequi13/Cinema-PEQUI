@@ -18,9 +18,7 @@ export const Input = ({ id, label, visible = "none", type, value, placeholder = 
     return (
         <>
             <div className="d-grid">
-                {/* Exibe rótulo apenas se visible = "true" */}
                 { visible === "true" ? <label htmlFor={id} className="form-label" >{label}</label> : null }
-                {/* Input com classe de erro se houver validação */}
                 <input 
                     id={id}
                     type={type} 
@@ -30,7 +28,6 @@ export const Input = ({ id, label, visible = "none", type, value, placeholder = 
                     disabled={disabled} 
                     onChange={(e) => onChange(e.target.value)} 
                 />
-                {/* Mensagem de erro em vermelho abaixo do input */}
                 {error && <div className="invalid-feedback d-block mb-2">{error}</div>}
             </div>
         </>

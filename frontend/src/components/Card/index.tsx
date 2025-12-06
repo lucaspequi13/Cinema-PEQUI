@@ -1,5 +1,3 @@
-
-
 // ===== INTERFACE DO COMPONENTE CARD =====
 // Define as propriedades aceitas pelo componente Card
 interface CardProps {
@@ -14,11 +12,8 @@ export const Card = ({ title, content, footer }: CardProps) => {
   return (
     <div className="card">
       <div className="card-body">
-        {/* Título do card */}
         <h5 className="card-title">{title}</h5>
-        {/* Conteúdo principal */}
         <p className="card-text">{content}</p>
-        {/* Rodapé opcional em texto pequeno e cinza */}
         {footer && <small className="text-muted">{footer}</small>}
       </div>
     </div>

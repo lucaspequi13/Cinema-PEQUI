@@ -25,7 +25,6 @@ export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
     return colors[classificacao] || 'bg-secondary';
   };
 
-  // ===== FUNÇÃO: Retorna o rótulo de classificação para exibir =====
   const getClassificacaoLabel = (classificacao: string) => {
     const labels: Record<string, string> = {
       'L': 'L',
@@ -50,11 +49,9 @@ export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
             (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x450?text=Sem+Imagem';
           }}
         />
-        {/* Badge com classificação etária */}
         <div className={`classificacao-badge ${getClassificacaoColor(filme.classificacao)}`}>
           {getClassificacaoLabel(filme.classificacao)}
         </div>
-        {/* Overlay com botão de compra que aparece ao passar mouse */}
         <div className="overlay-comprar">
           <Link to="/sessoes" className="btn btn-danger btn-lg">
             <i className="bi bi-ticket-perforated"></i> Comprar Ingressos

@@ -1,5 +1,3 @@
-
-
 // ===== INTERFACE DO COMPONENTE BUTTON =====
 // Define as propriedades aceitas pelo componente Button
 interface ButtonProps {
@@ -9,7 +7,6 @@ interface ButtonProps {
     onClick: () => void; // Callback quando botão é clicado
     disabled?: boolean; // Se o botão está desabilitado
 }
-
 // ===== COMPONENTE BUTTON =====
 // Botão reutilizável com suporte a diferentes estilos Bootstrap
 export const Button = (
@@ -18,7 +15,6 @@ export const Button = (
     return (
         <>
             <div className="d-grid">
-                {/* Botão com classe dinâmica de variante */}
                 <button
                     type={type}
                     className={`btn btn-${variant}`}
