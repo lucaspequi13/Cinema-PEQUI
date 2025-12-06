@@ -220,7 +220,7 @@ export function AdminPages() {
                   <div
                     key={filme.id}
                     style={{
-                      background: 'linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/posters/Pequi fundos.jpg)',
+                      background: 'linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url(/posters/Pequi fundos.jpg)',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       borderRadius: '12px',
