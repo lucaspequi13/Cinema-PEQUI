@@ -1,15 +1,21 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import type { IUsuario } from '../../models/usuario.model';
-import { usuarioSchema } from '../../models/usuario.model';
+// ===== IMPORTS =====
+import { useState } from 'react'; // Hook de estado
+import { v4 as uuidv4 } from 'uuid'; // Gerador de IDs únicos
+import type { IUsuario } from '../../models/usuario.model'; // Interface de usuário
+import { usuarioSchema } from '../../models/usuario.model'; // Schema de validação
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente RegisterModal
 interface RegisterModalProps {
-  show: boolean;
-  onClose: () => void;
-  onRegisterSuccess?: () => void;
+  show: boolean; // Controla visibilidade do modal
+  onClose: () => void; // Callback ao fechar o modal
+  onRegisterSuccess?: () => void; // Callback ao registrar com sucesso
 }
 
+// ===== COMPONENTE REGISTERMODAL =====
+// Modal para registro de novos usuários
 export function RegisterModal({ show, onClose, onRegisterSuccess }: RegisterModalProps) {
+  // ===== ESTADO: Dados do formulário =====
   const [formData, setFormData] = useState<IUsuario>({
     nome: '',
     email: '',
@@ -17,16 +23,19 @@ export function RegisterModal({ show, onClose, onRegisterSuccess }: RegisterModa
     status: 'ativo',
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
+  // ===== ESTADOS: Validação e feedback =====
+  const [errors, setErrors] = useState<Record<string, string>>({}); // Erros de validação
+  const [loading, setLoading] = useState(false); // Estado de carregamento
+  const [successMessage, setSuccessMessage] = useState(''); // Mensagem de sucesso
 
+  // ===== FUNÇÃO: Atualiza valor de campo do formulário =====
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
+    // Remove erro do campo quando usuário começa a digitar
     if (errors[name]) {
       setErrors(prev => {
         const newErrors = { ...prev };
@@ -36,6 +45,7 @@ export function RegisterModal({ show, onClose, onRegisterSuccess }: RegisterModa
     }
   };
 
+  // ===== FUNÇÃO: Submete o formulário e registra novo usuário =====
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     

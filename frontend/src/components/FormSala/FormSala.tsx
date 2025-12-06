@@ -1,13 +1,19 @@
-import { useState } from 'react';
-import type { ISala } from '../../models/sala.model';
-import { salaSchema } from '../../models/sala.model';
-import { salaService } from '../../services/sala.service';
+// ===== IMPORTS =====
+import { useState } from 'react'; // Hook de estado
+import type { ISala } from '../../models/sala.model'; // Interface de sala
+import { salaSchema } from '../../models/sala.model'; // Schema de validação
+import { salaService } from '../../services/sala.service'; // Serviço de salas
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente FormSala
 interface FormSalaProps {
-  onSuccess?: () => void;
+  onSuccess?: () => void; // Callback ao salvar com sucesso
 }
 
+// ===== COMPONENTE FORMSALA =====
+// Formulário para criar/editar salas de cinema
 export function FormSala({ onSuccess }: FormSalaProps) {
+  // ===== ESTADO: Dados do formulário =====
   const [formData, setFormData] = useState<ISala>({
     numero: 0,
     capacidade: 0,
@@ -15,9 +21,11 @@ export function FormSala({ onSuccess }: FormSalaProps) {
     assentosOcupados: 0,
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
+  // ===== ESTADOS: Validação e feedback =====
+  const [errors, setErrors] = useState<Record<string, string>>({}); // Erros de validação
+  const [loading, setLoading] = useState(false); // Estado de carregamento
 
+  // ===== FUNÇÃO: Atualiza valor de campo do formulário =====
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({

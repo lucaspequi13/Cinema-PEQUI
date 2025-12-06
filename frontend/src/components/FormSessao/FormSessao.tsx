@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react';
-import type { ISessao } from '../../models/sessao.model';
-import { sessaoSchema } from '../../models/sessao.model';
-import { sessaoService } from '../../services/sessao.service';
-import { filmeService } from '../../services/filme.service';
-import { salaService } from '../../services/sala.service';
-import type { IFilme } from '../../models/filme.model';
-import type { ISala } from '../../models/sala.model';
+// ===== IMPORTS =====
+import { useState, useEffect } from 'react'; // Hooks de estado e efeito
+import type { ISessao } from '../../models/sessao.model'; // Interface de sessão
+import { sessaoSchema } from '../../models/sessao.model'; // Schema de validação
+import { sessaoService } from '../../services/sessao.service'; // Serviço de sessões
+import { filmeService } from '../../services/filme.service'; // Serviço de filmes
+import { salaService } from '../../services/sala.service'; // Serviço de salas
+import type { IFilme } from '../../models/filme.model'; // Interface de filme
+import type { ISala } from '../../models/sala.model'; // Interface de sala
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente FormSessao
 interface FormSessaoProps {
-  onSuccess?: () => void;
+  onSuccess?: () => void; // Callback ao salvar com sucesso
 }
 
+// ===== COMPONENTE FORMSESSAO =====
+// Formulário para criar/editar sessões de cinema
 export function FormSessao({ onSuccess }: FormSessaoProps) {
+  // ===== ESTADO: Dados do formulário =====
   const [formData, setFormData] = useState<ISessao>({
     filmeId: '',
     salaId: '',
@@ -21,12 +27,15 @@ export function FormSessao({ onSuccess }: FormSessaoProps) {
     assentosDisponiveis: 0,
   });
 
-  const [filmes, setFilmes] = useState<IFilme[]>([]);
-  const [salas, setSalas] = useState<ISala[]>([]);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
+  // ===== ESTADOS: Opções de filmes e salas =====
+  const [filmes, setFilmes] = useState<IFilme[]>([]); // Lista de filmes disponíveis
+  const [salas, setSalas] = useState<ISala[]>([]); // Lista de salas disponíveis
+  
+  // ===== ESTADOS: Validação e feedback =====
+  const [errors, setErrors] = useState<Record<string, string>>({}); // Erros de validação
+  const [loading, setLoading] = useState(false); // Estado de carregamento
 
-  // Carregar filmes e salas ao montar
+  // ===== EFEITO: Carregar filmes e salas ao montar componente =====
   useEffect(() => {
     carregarDados();
   }, []);

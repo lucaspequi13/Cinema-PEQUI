@@ -1,19 +1,24 @@
-import { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { SeatMap } from '../SeatMap/SeatMap';
-import type { IFilme } from '../../models/filme.model';
-import type { ISala } from '../../models/sala.model';
-import type { ISessao } from '../../models/sessao.model';
+// ===== IMPORTS =====
+import { useState, useEffect } from 'react'; // Hooks de estado e efeito
+import { v4 as uuidv4 } from 'uuid'; // Gerador de IDs únicos
+import { SeatMap } from '../SeatMap/SeatMap'; // Componente do mapa de assentos
+import type { IFilme } from '../../models/filme.model'; // Interface de filme
+import type { ISala } from '../../models/sala.model'; // Interface de sala
+import type { ISessao } from '../../models/sessao.model'; // Interface de sessão
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente ComprarIngressoModal
 interface ComprarIngressoModalProps {
-  show: boolean;
-  onClose: () => void;
-  sessao?: ISessao;
-  filme?: IFilme;
-  sala?: ISala;
-  onCompraSuccess?: () => void;
+  show: boolean; // Controla visibilidade do modal
+  onClose: () => void; // Callback ao fechar o modal
+  sessao?: ISessao; // Sessão selecionada
+  filme?: IFilme; // Filme da sessão
+  sala?: ISala; // Sala da sessão
+  onCompraSuccess?: () => void; // Callback ao comprar com sucesso
 }
 
+// ===== COMPONENTE COMPRARINGRESSOMODAL =====
+// Modal para compra de ingressos com seleção de assentos
 export default function ComprarIngressoModal({
   show,
   onClose,
@@ -22,18 +27,23 @@ export default function ComprarIngressoModal({
   sala,
   onCompraSuccess,
 }: ComprarIngressoModalProps) {
-  const [assentosComprados, setAssentosComprados] = useState<string[]>([]);
-  const [ingressosExistentes, setIngressosExistentes] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [error, setError] = useState('');
+  // ===== ESTADOS: Gerenciamento de assentos =====
+  const [assentosComprados, setAssentosComprados] = useState<string[]>([]); // Assentos selecionados
+  const [ingressosExistentes, setIngressosExistentes] = useState<string[]>([]); // Assentos já comprados
+  
+  // ===== ESTADOS: Feedback e carregamento =====
+  const [loading, setLoading] = useState(false); // Estado de carregamento
+  const [successMessage, setSuccessMessage] = useState(''); // Mensagem de sucesso
+  const [error, setError] = useState(''); // Mensagem de erro
 
+  // ===== EFEITO: Carrega dados quando modal abre =====
   useEffect(() => {
     if (show && sessao) {
       carregarDados();
     }
   }, [show, sessao]);
 
+  // ===== FUNÇÃO: Carrega ingressos já comprados =====
   const carregarDados = async () => {
     if (!sessao) return;
     

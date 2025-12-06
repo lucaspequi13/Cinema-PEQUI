@@ -1,13 +1,19 @@
-import { useState } from 'react';
-import type { IFilme } from '../../models/filme.model';
-import { filmeSchema } from '../../models/filme.model';
-import { filmeService } from '../../services/filme.service';
+// ===== IMPORTS =====
+import { useState } from 'react'; // Hook de estado
+import type { IFilme } from '../../models/filme.model'; // Interface de filme
+import { filmeSchema } from '../../models/filme.model'; // Schema de validação
+import { filmeService } from '../../services/filme.service'; // Serviço de filmes
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente FormFilme
 interface FormFilmeProps {
-  onSuccess?: () => void;
+  onSuccess?: () => void; // Callback ao salvar com sucesso
 }
 
+// ===== COMPONENTE FORMFILME =====
+// Formulário para criar/editar filmes
 export function FormFilme({ onSuccess }: FormFilmeProps) {
+  // ===== ESTADO: Dados do formulário =====
   const [formData, setFormData] = useState<IFilme>({
     titulo: '',
     descricao: '',
@@ -19,9 +25,11 @@ export function FormFilme({ onSuccess }: FormFilmeProps) {
     dataLancamento: '',
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
+  // ===== ESTADOS: Validação e feedback =====
+  const [errors, setErrors] = useState<Record<string, string>>({}); // Erros de validação
+  const [loading, setLoading] = useState(false); // Estado de carregamento
 
+  // ===== FUNÇÃO: Atualiza valor de campo do formulário =====
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({

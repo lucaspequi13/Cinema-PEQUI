@@ -1,12 +1,18 @@
-import type { IFilme } from '../../models/filme.model';
-import { Link } from 'react-router-dom';
+// ===== IMPORTS =====
+import type { IFilme } from '../../models/filme.model'; // Interface do modelo de filme
+import { Link } from 'react-router-dom'; // Para navegação entre rotas
 
+// ===== INTERFACE DO COMPONENTE =====
+// Define as propriedades aceitas pelo componente CartazFilme
 interface CartazFilmeProps {
-  filme: IFilme;
-  onClick?: () => void;
+  filme: IFilme; // Objeto do filme a ser exibido
+  onClick?: () => void; // Callback opcional quando o cartaz é clicado
 }
 
+// ===== COMPONENTE CARTAZ FILME =====
+// Exibe um cartaz (poster) do filme com informações e botão de compra
 export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
+  // ===== FUNÇÃO: Retorna classe de cor Bootstrap baseada na classificação =====
   const getClassificacaoColor = (classificacao: string) => {
     const colors: Record<string, string> = {
       'L': 'bg-success',
@@ -19,6 +25,7 @@ export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
     return colors[classificacao] || 'bg-secondary';
   };
 
+  // ===== FUNÇÃO: Retorna o rótulo de classificação para exibir =====
   const getClassificacaoLabel = (classificacao: string) => {
     const labels: Record<string, string> = {
       'L': 'L',
@@ -34,6 +41,7 @@ export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
   return (
     <div className="cartaz-filme" onClick={onClick}>
       <div className="poster-container">
+        {/* Imagem do poster do filme com fallback */}
         <img 
           src={filme.poster} 
           alt={filme.titulo}
@@ -42,9 +50,11 @@ export function CartazFilme({ filme, onClick }: CartazFilmeProps) {
             (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x450?text=Sem+Imagem';
           }}
         />
+        {/* Badge com classificação etária */}
         <div className={`classificacao-badge ${getClassificacaoColor(filme.classificacao)}`}>
           {getClassificacaoLabel(filme.classificacao)}
         </div>
+        {/* Overlay com botão de compra que aparece ao passar mouse */}
         <div className="overlay-comprar">
           <Link to="/sessoes" className="btn btn-danger btn-lg">
             <i className="bi bi-ticket-perforated"></i> Comprar Ingressos
