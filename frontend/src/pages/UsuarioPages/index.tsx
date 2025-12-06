@@ -1,3 +1,9 @@
+// ============================================
+// PÁGINA USUÁRIO - Cinema do Pequi Cerrado
+// ============================================
+// Permite gerenciamento de dados do perfil do usuário
+// Mostra formulário de edição e lista de usuários
+
 import { useEffect, useState } from "react";
 import type { IUsuario } from "../../models/usuario.model";
 import { usuarioSchema } from "../../models/usuario.model";
@@ -5,17 +11,20 @@ import { usuariosService } from "../../services/usuario.service";
 import { UsuarioForm } from "./UsuarioForm";
 import { UsuarioTable } from "./UsuarioTable";
 
+// ===== FUNÇÃO: USUARIO PAGES =====
+// Renderiza página com formulário e tabela de usuários
 export const UsuarioPages = () => {
-  // ==================== ESTADOS ====================
-  const [usuario, setUsuario] = useState<IUsuario | null>(null);
-  const [listaUsuarios, setListaUsuarios] = useState<IUsuario[]>([]);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [keyReiniciar, setKeyReiniciar] = useState(0);
+  // ===== ESTADOS =====
+  const [usuario, setUsuario] = useState<IUsuario | null>(null); // Usuário sendo editado
+  const [listaUsuarios, setListaUsuarios] = useState<IUsuario[]>([]); // Lista de todos usuários
+  const [errors, setErrors] = useState<Record<string, string>>({}); // Erros de validação
+  const [keyReiniciar, setKeyReiniciar] = useState(0); // Chave para resetar formulário
 
     // ==================== FUNÇÕES AUXILIARES ====================
   
+  // ===== FUNÇÃO: CARREGAR USUÁRIOS =====
   /**
-   * Carrega a lista de usuários do backend
+   * Busca a lista de todos os usuários do backend
    */
   const carregarUsuarios = async () => {
     try {
@@ -26,13 +35,14 @@ export const UsuarioPages = () => {
     }
   };
 
-  // ==================== EFEITOS ====================
+  // ===== USEEFFECT: CARREGA USUÁRIOS AO MONTAR =====
   useEffect(() => {
     // Carrega a lista de usuários ao montar o componente
     // eslint-disable-next-line react-hooks/set-state-in-effect
     carregarUsuarios();
   }, []);
 
+  // ===== FUNÇÃO: VALIDAR USUÁRIO =====
   /**
    * Valida os dados do usuário usando Zod
    * @returns Dados validados ou null se houver erro
@@ -56,6 +66,7 @@ export const UsuarioPages = () => {
     return result.data;
   };
 
+  // ===== FUNÇÃO: CHECAR SE É EDIÇÃO =====
   /**
    * Verifica se é uma operação de edição (ID existe e não é vazio)
    */

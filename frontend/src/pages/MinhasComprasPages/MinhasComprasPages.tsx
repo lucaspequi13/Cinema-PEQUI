@@ -1,33 +1,47 @@
+// ============================================
+// PÁGINA MINHAS COMPRAS - Cinema do Pequi Cerrado
+// ============================================
+// Exibe histórico de ingressos comprados pelo usuário
+// Mostra detalhes de cada compra: filme, sala, horário, assento e data
+
 import { useState, useEffect } from 'react';
 import type { IIngresso } from '../../models/ingresso.model';
 import type { ISessao } from '../../models/sessao.model';
 import type { IFilme } from '../../models/filme.model';
 import type { ISala } from '../../models/sala.model';
 
+// Interface com detalhes completos de uma compra
 interface CompraDetalhada {
-  ingresso: IIngresso;
-  sessao?: ISessao;
-  filme?: IFilme;
-  sala?: ISala;
+  ingresso: IIngresso; // Dados do ingresso
+  sessao?: ISessao;   // Dados da sessão
+  filme?: IFilme;     // Dados do filme
+  sala?: ISala;       // Dados da sala
 }
 
+// Interface com informações de uma sessão e seus ingressos
 interface SessaoComDetalhes extends ISessao {
-  filme?: IFilme;
-  sala?: ISala;
-  ingressos: IIngresso[];
+  filme?: IFilme;           // Filme da sessão
+  sala?: ISala;             // Sala da sessão
+  ingressos: IIngresso[];   // Lista de ingressos vendidos
 }
 
+// ===== FUNÇÃO: MINHAS COMPRAS PAGES =====
+// Renderiza página com histórico de compras de ingressos
 export function MinhasComprasPages() {
-  const [compras, setCompras] = useState<CompraDetalhada[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [showSessionsModal, setShowSessionsModal] = useState(false);
-  const [sessoesCompradas, setSessoesCompradas] = useState<SessaoComDetalhes[]>([]);
+  // ===== ESTADOS =====
+  const [compras, setCompras] = useState<CompraDetalhada[]>([]); // Histórico de compras
+  const [loading, setLoading] = useState(true); // Indica se está carregando
+  const [error, setError] = useState<string | null>(null); // Armazena erros
+  const [showSessionsModal, setShowSessionsModal] = useState(false); // Controla modal
+  const [sessoesCompradas, setSessoesCompradas] = useState<SessaoComDetalhes[]>([]); // Sessões compradas
 
+  // ===== USEEFFECT: CARREGA COMPRAS AO MONTAR =====
   useEffect(() => {
     carregarCompras();
   }, []);
 
+  // ===== FUNÇÃO: CARREGAR COMPRAS =====
+  // Busca todos os ingressos e associa com sessões, filmes e salas
   const carregarCompras = async () => {
     try {
       setLoading(true);
@@ -46,8 +60,9 @@ export function MinhasComprasPages() {
       const salasResponse = await fetch('http://localhost:4000/salas');
       const salas = await salasResponse.json();
 
-      // Montar compras detalhadas
+      // Montar compras detalhadas - associa cada ingresso com sua sessão, filme e sala
       const comprasDetalhadas: CompraDetalhada[] = ingressos.map((ingresso: IIngresso) => {
+
         const sessao = sessoes.find((s: ISessao) => s.id === ingresso.sessaoId);
         const filme = sessao ? filmes.find((f: IFilme) => f.id === sessao.filmeId) : undefined;
         const sala = sessao ? salas.find((s: ISala) => s.id === sessao.salaId) : undefined;

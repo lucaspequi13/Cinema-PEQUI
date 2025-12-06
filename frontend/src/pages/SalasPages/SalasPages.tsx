@@ -1,23 +1,37 @@
+// ============================================
+// PÁGINA SALAS - Cinema do Pequi Cerrado
+// ============================================
+// Exibe todas as salas do cinema com informações de capacidade,
+// tipo (Padrão, 3D, IMAX, 4DX), status VIP e disponibilidade
+// Permite visualizar o mapa de assentos de cada sala
+
 import { useState, useEffect } from 'react';
 import type { ISala } from '../../models/sala.model';
 import { salaService } from '../../services/sala.service';
 import { SeatMap } from '../../components/SeatMap/SeatMap';
 
+// ===== FUNÇÃO: SALAS PAGES =====
+// Renderiza a página com lista de salas e visualização de assentos
 export function SalasPages() {
-  const [salas, setSalas] = useState<ISala[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [salaSelecionada, setSalaSelecionada] = useState<ISala | null>(null);
-  const [assentosOcupadosSala, setAssentosOcupadosSala] = useState<string[]>([]);
+  // ===== ESTADOS =====
+  const [salas, setSalas] = useState<ISala[]>([]); // Lista de todas as salas
+  const [loading, setLoading] = useState(true); // Indica se está carregando dados
+  const [error, setError] = useState<string | null>(null); // Armazena mensagens de erro
+  const [salaSelecionada, setSalaSelecionada] = useState<ISala | null>(null); // Sala selecionada para ver detalhes
+  const [assentosOcupadosSala, setAssentosOcupadosSala] = useState<string[]>([]); // Assentos ocupados na sala
 
+  // ===== USEEFFECT: CARREGA SALAS AO MONTAR =====
+  // Executa a função carregarSalas quando o componente é montado
   useEffect(() => {
     carregarSalas();
   }, []);
 
+  // ===== FUNÇÃO: CARREGAR SALAS =====
+  // Busca todas as salas do backend via API
   const carregarSalas = async () => {
     try {
       setLoading(true);
-      const dados = await salaService.listar();
+      const dados = await salaService.listar(); // Chamada à API
       setSalas(dados);
       setError(null);
     } catch (erro) {
@@ -28,16 +42,22 @@ export function SalasPages() {
     }
   };
 
+  // ===== FUNÇÃO: GET TIPO SALA BADGE =====
+  // Retorna a classe Bootstrap de cor para diferentes tipos de sala
+  // Padrão=azul, 3D=ciano, IMAX=amarelo, 4DX=vermelho
   const getTipoSalaBadge = (tipo: string) => {
     const badges: Record<string, string> = {
-      'padrão': 'bg-primary',
-      '3D': 'bg-info',
-      'IMAX': 'bg-warning text-dark',
-      '4DX': 'bg-danger',
+      'padrão': 'bg-primary',       // Azul
+      '3D': 'bg-info',              // Ciano
+      'IMAX': 'bg-warning text-dark', // Amarelo
+      '4DX': 'bg-danger',           // Vermelho
     };
     return badges[tipo] || 'bg-secondary';
   };
 
+  // ===== FUNÇÃO: CARREGAR ASSENTOS OCUPADOS =====
+  // Busca todos os assentos ocupados da sala em todas as sessões
+  // Faz chamadas sequenciais para: sessões -> ingressos
   const carregarAssentosOcupados = async (salaId: string) => {
     try {
       // Buscar todas as sessões dessa sala
@@ -59,6 +79,8 @@ export function SalasPages() {
     }
   };
 
+  // ===== CONDIÇÃO: ESTADO CARREGANDO =====
+  // Mostra spinner enquanto dados estão sendo carregados
   if (loading) {
     return (
       <div className="container mt-5">
@@ -71,6 +93,8 @@ export function SalasPages() {
     );
   }
 
+  // ===== CONDIÇÃO: ESTADO ERRO =====
+  // Mostra mensagem de erro se houver falha ao carregar
   if (error) {
     return (
       <div className="container mt-5">
@@ -81,8 +105,10 @@ export function SalasPages() {
     );
   }
 
+  // ===== RETORNO: JSX PRINCIPAL =====
   return (
     <div className="container mt-5 mb-5">
+      {/* CABEÇALHO - Título e descrição da página */}
       <div className="row mb-4">
         <div className="col-12">
           <h1 className="display-4">
@@ -92,19 +118,25 @@ export function SalasPages() {
         </div>
       </div>
 
+      {/* CONDIÇÃO: LISTA VAZIA */}
       {salas.length === 0 ? (
         <div className="alert alert-info">
           Nenhuma sala disponível no momento.
         </div>
       ) : (
+        // GRID DE SALAS - Mostra todas as salas em cards
         <div className="row g-4">
+          {/* MAPEAMENTO - Cada sala é um card */}
           {salas.map((sala) => (
             <div key={sala.id} className="col-12 col-md-6 col-lg-4">
               <div className="card h-100">
                 <div className="card-body">
+                  {/* TÍTULO: Número da sala com ícone */}
                   <h5 className="card-title">
                     <i className="bi bi-door-closed"></i> Sala {sala.numero}
                   </h5>
+
+                  {/* BADGES: Tipo de sala (3D, IMAX, etc) e status VIP */}
                   <div className="mb-3">
                     <span className={`badge ${getTipoSalaBadge(sala.tipo)}`}>
                       {sala.tipo.toUpperCase()}
@@ -115,6 +147,8 @@ export function SalasPages() {
                       </span>
                     )}
                   </div>
+
+                  {/* INFORMAÇÕES: Capacidade, disponibilidade, temperatura */}
                   <div className="mb-3">
                     <p className="card-text">
                       <strong>Capacidade:</strong> {sala.capacidade} lugares
@@ -122,11 +156,14 @@ export function SalasPages() {
                     <p className="card-text">
                       <strong>Disponíveis:</strong> {sala.capacidade - sala.assentosOcupados}
                     </p>
+                    {/* Temperatura só aparece em salas VIP */}
                     {sala.vip && sala.temperaturAC && (
                       <p className="card-text">
                         <strong><i className="bi bi-snow"></i> A/C:</strong> {sala.temperaturAC}°C
                       </p>
                     )}
+
+                    {/* PROGRESS BAR: Mostra percentual de assentos disponíveis */}
                     <div className="progress">
                       <div
                         className="progress-bar bg-success"
@@ -139,6 +176,8 @@ export function SalasPages() {
                       </div>
                     </div>
                   </div>
+
+                  {/* BOTÃO: Ver assentos - abre modal com mapa de assentos */}
                   <button 
                     className="btn btn-primary w-100"
                     onClick={() => {
@@ -155,21 +194,27 @@ export function SalasPages() {
         </div>
       )}
 
+      {/* MODAL: Detalhes da sala com mapa de assentos */}
       {salaSelecionada && (
         <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-lg modal-dialog-centered">
             <div className="modal-content">
+              {/* CABEÇALHO DO MODAL - Número e tipo de sala */}
               <div className="modal-header">
                 <h5 className="modal-title">
                   Sala {salaSelecionada.numero} - {salaSelecionada.tipo.toUpperCase()}
                 </h5>
+                {/* BOTÃO FECHAR - Fecha modal ao clicar */}
                 <button
                   type="button"
                   className="btn-close"
                   onClick={() => setSalaSelecionada(null)}
                 ></button>
               </div>
+
+              {/* CORPO DO MODAL - Informações e mapa de assentos */}
               <div className="modal-body">
+                {/* INFORMAÇÕES RESUMIDAS - Capacidade, ocupação, etc */}
                 <div className="mb-3 p-3 bg-light rounded">
                   <div className="row g-2">
                     <div className="col-md-6">
@@ -177,6 +222,7 @@ export function SalasPages() {
                       <p className="mb-1"><strong>Ocupados:</strong> {salaSelecionada.assentosOcupados}</p>
                       <p className="mb-0"><strong>Disponíveis:</strong> {salaSelecionada.capacidade - salaSelecionada.assentosOcupados}</p>
                     </div>
+                    {/* Dados VIP - Mostra apenas se sala é VIP */}
                     <div className="col-md-6">
                       {salaSelecionada.vip && (
                         <>
@@ -189,11 +235,13 @@ export function SalasPages() {
                     </div>
                   </div>
                 </div>
+
+                {/* MAPA DE ASSENTOS - Visualização dos assentos ocupados/disponíveis */}
                 <SeatMap
                   capacidade={salaSelecionada.capacidade}
                   assentosOcupados={assentosOcupadosSala}
                   assentosComprados={[]}
-                  onSelectSeat={() => {}}
+                  onSelectSeat={() => {}} // Função vazia pois é apenas visualização
                 />
               </div>
             </div>

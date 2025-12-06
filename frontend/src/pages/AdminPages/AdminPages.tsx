@@ -78,12 +78,15 @@ export function AdminPages() {
     }
   };
 
+
+  // ===== FUNÇÃO: DELETAR SESSÃO =====
+  // Remove uma sessão da lista e da API
   const handleDeleteSessao = async (id?: string) => {
     if (!id) return;
     if (confirm('Tem certeza que deseja deletar esta sessão?')) {
       try {
-        await sessaoService.deletar(id);
-        setSessoes(sessoes.filter(s => s.id !== id));
+        await sessaoService.deletar(id); // API request para deletar
+        setSessoes(sessoes.filter(s => s.id !== id)); // Remove da lista local
       } catch (erro) {
         console.error('Erro ao deletar sessão:', erro);
         alert('Erro ao deletar sessão');
@@ -91,11 +94,15 @@ export function AdminPages() {
     }
   };
 
+  // ===== FUNÇÃO: EDITAR SESSÃO =====
+  // Abre modal para editar uma sessão existente
   const handleEditarSessao = (sessao: ISessao) => {
     setSessaoEditando(sessao);
     setShowModalEdicao(true);
   };
 
+  // ===== FUNÇÃO: SALVAR EDIÇÃO DE SESSÃO =====
+  // Envia alterações da sessão para a API e atualiza a lista local
   const handleSalvarEdicao = async () => {
     if (!sessaoEditando || !sessaoEditando.id) return;
     try {
@@ -110,11 +117,15 @@ export function AdminPages() {
     }
   };
 
+  // ===== FUNÇÃO: EDITAR FILME =====
+  // Abre modal para editar um filme existente
   const handleEditarFilme = (filme: IFilme) => {
     setFilmeEditando(filme);
     setShowModalEdicaoFilme(true);
   };
 
+  // ===== FUNÇÃO: SALVAR EDIÇÃO DE FILME =====
+  // Envia alterações do filme para a API e atualiza a lista local
   const handleSalvarEdicaoFilme = async () => {
     if (!filmeEditando || !filmeEditando.id) return;
     try {
@@ -129,8 +140,10 @@ export function AdminPages() {
     }
   };
 
+  // ===== RETORNO: JSX PRINCIPAL =====
   return (
     <div className="container mt-5 mb-5">
+      {/* CABEÇALHO - Título e descrição do painel */}
       <div className="row mb-4">
         <div className="col-12">
           <h1 className="display-4">
@@ -140,7 +153,9 @@ export function AdminPages() {
         </div>
       </div>
 
+      {/* ABAS/TABS - Três abas: Filmes, Salas e Sessões */}
       <ul className="nav nav-tabs mb-4" role="tablist">
+        {/* ABA 1: Filmes */}
         <li className="nav-item" role="presentation">
           <button
             className={`nav-link ${activeTab === 'filmes' ? 'active' : ''}`}
@@ -151,6 +166,8 @@ export function AdminPages() {
             <i className="bi bi-film"></i> Filmes
           </button>
         </li>
+
+        {/* ABA 2: Salas */}
         <li className="nav-item" role="presentation">
           <button
             className={`nav-link ${activeTab === 'salas' ? 'active' : ''}`}
@@ -161,6 +178,8 @@ export function AdminPages() {
             <i className="bi bi-door-closed"></i> Salas
           </button>
         </li>
+
+        {/* ABA 3: Sessões */}
         <li className="nav-item" role="presentation">
           <button
             className={`nav-link ${activeTab === 'sessoes' ? 'active' : ''}`}
