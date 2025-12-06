@@ -1,0 +1,188 @@
+.filmes-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.hero-filmes {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-filmes::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.hero-filmes::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.hero-filmes h1 {
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+}
+
+.hero-filmes .lead {
+  font-weight: 300;
+  font-size: 1.3rem;
+  opacity: 0.95;
+}
+
+.classificacao-legenda {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.classificacao-legenda h6 {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.classificacao-legenda .badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0.6rem 0.8rem !important;
+  border-radius: 6px;
+}
+
+.filmes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  animation: fadeIn 0.5s ease-in;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.filme-card-wrapper {
+  transition: all 0.3s ease;
+}
+
+.filme-card-wrapper:hover {
+  animation: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filme-card-wrapper:nth-child(1) { animation-delay: 0.05s; }
+.filme-card-wrapper:nth-child(2) { animation-delay: 0.1s; }
+.filme-card-wrapper:nth-child(3) { animation-delay: 0.15s; }
+.filme-card-wrapper:nth-child(4) { animation-delay: 0.2s; }
+.filme-card-wrapper:nth-child(5) { animation-delay: 0.25s; }
+.filme-card-wrapper:nth-child(6) { animation-delay: 0.3s; }
+.filme-card-wrapper:nth-child(n+7) { animation-delay: 0.3s; }
+
+@media (max-width: 1200px) {
+  .filmes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .filmes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .hero-filmes {
+    padding: 50px 20px !important;
+  }
+
+  .hero-filmes h1 {
+    font-size: 2rem;
+  }
+
+  .hero-filmes .lead {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .filmes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .hero-filmes {
+    padding: 40px 20px !important;
+    margin-bottom: 30px;
+  }
+
+  .hero-filmes h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-filmes .lead {
+    font-size: 1rem;
+  }
+
+  .classificacao-legenda {
+    padding: 15px;
+  }
+
+  .classificacao-legenda h6 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .filmes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .hero-filmes {
+    padding: 30px 15px !important;
+    margin-bottom: 25px;
+  }
+
+  .hero-filmes h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px !important;
+  }
+
+  .hero-filmes .lead {
+    font-size: 0.95rem;
+  }
+
+  .classificacao-legenda {
+    padding: 12px;
+    margin-bottom: 20px !important;
+  }
+
+  .classificacao-legenda .badge {
+    font-size: 11px;
+    padding: 0.4rem 0.6rem !important;
+  }
+}

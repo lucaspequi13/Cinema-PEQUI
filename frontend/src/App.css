@@ -1,0 +1,25 @@
+/* Custom card styling with Pequi background */
+.card {
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/posters/Pequi fundos.jpg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.alert {
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/posters/Pequi fundos.jpg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.modal-content {
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/posters/Pequi fundos.jpg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.bg-light {
+  background: linear-gradient(rgba(245, 245, 245, 0.85), rgba(245, 245, 245, 0.85)), url(/posters/Pequi fundos.jpg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+

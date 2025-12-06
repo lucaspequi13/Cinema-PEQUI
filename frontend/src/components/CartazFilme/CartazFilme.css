@@ -1,0 +1,170 @@
+.cartaz-filme {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartaz-filme:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.poster-container {
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  height: 0;
+  padding-bottom: 150%;
+  contain: layout style paint size;
+  flex-shrink: 0;
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.poster-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.cartaz-filme:hover .poster-img {
+  transform: scale(1.05);
+}
+
+.classificacao-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  min-width: 45px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.overlay-comprar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.cartaz-filme:hover .overlay-comprar {
+  opacity: 1;
+}
+
+.overlay-comprar .btn {
+  white-space: nowrap;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.filme-info {
+  padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.filme-titulo {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  color: #222;
+  font-size: 15px;
+  line-height: 1.4;
+  min-height: 44px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.filme-genero {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.filme-detalhes {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filme-duracao {
+  margin: 0;
+  color: #888;
+}
+
+.filme-diretor {
+  margin: 0;
+  color: #666;
+}
+
+@media (max-width: 576px) {
+  .cartaz-filme {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .cartaz-filme:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .filme-info {
+    padding: 14px;
+  }
+
+  .filme-titulo {
+    font-size: 14px;
+  }
+
+  .classificacao-badge {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .overlay-comprar .btn {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+  }
+}

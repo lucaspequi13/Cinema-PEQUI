@@ -1,19 +1,411 @@
 {
   "usuarios": [
     {
-      "nome": "MONICA J. SILVA",
-      "email": "monica@gmail.com",
+      "id": "88c1",
+      "nome": "lucas",
+      "email": "lucas13@gmail.com",
       "senha": "123456",
-      "status": "inativo",
-      "id": "137c"
+      "status": "ativo"
+    }
+  ],
+  "filmes": [
+    {
+      "id": "1",
+      "titulo": "Dune: Parte Dois",
+      "descricao": "Paul Atreides viaja para o planeta perigoso Arrakis para vingar a morte de sua família. Ele deve proteger a mulher que o ama e a pessoa que teria um futuro extraordinário antes que pudesse ser realizado.",
+      "classificacao": "12",
+      "duracao": 166,
+      "genero": "Ficção Científica",
+      "poster": "/posters/dune2.jpeg",
+      "diretor": "Denis Villeneuve",
+      "dataLancamento": "2024-02-28",
+      "nota": 8.5
     },
     {
-      "nome": "MIGULE C. ",
-      "email": "miguel@gmail.com",
-      "senha": "dandan",
-      "status": "inativo",
-      "id": "0f1d"
+      "id": "2",
+      "titulo": "Homem-Aranha: Sem Volta Para Casa",
+      "descricao": "Com a identidade de Peter Parker exposta, nosso herói amigo de bairro fica de costas para a parede.",
+      "classificacao": "14",
+      "duracao": 159,
+      "genero": "Ação/Aventura",
+      "poster": "/posters/homem-aranha.jpg",
+      "diretor": "Jon Watts",
+      "dataLancamento": "2021-12-16",
+      "nota": 9.0
     },
-  
+    {
+      "id": "3",
+      "titulo": "Barbie",
+      "descricao": "Barbie e Ken, um par de bonecas icônicas, enfrentam uma crise de identidade e precisam navegar pelo mundo real para encontrar seu propósito.",
+      "classificacao": "10",
+      "duracao": 114,
+      "genero": "Comédia",
+      "poster": "/posters/barbie.jpg",
+      "diretor": "Greta Gerwig",
+      "dataLancamento": "2023-07-21",
+      "nota": 8.0
+    },
+    {
+      "id": "4",
+      "titulo": "Oppenheimer",
+      "descricao": "A história do físico teórico J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica durante a Segunda Guerra Mundial.",
+      "classificacao": "16",
+      "duracao": 180,
+      "genero": "Drama/Histórico",
+      "poster": "/posters/oppenheimer.webp",
+      "diretor": "Christopher Nolan",
+      "dataLancamento": "2023-07-21",
+      "nota": 8.9
+    },
+    {
+      "id": "5",
+      "titulo": "Aquaman e o Reino Perdido",
+      "descricao": "Aquaman enfrenta novos desafios enquanto tenta proteger o reino submarino e Atlantis.",
+      "classificacao": "12",
+      "duracao": 124,
+      "genero": "Ação/Fantasia",
+      "poster": "/posters/aquaman.jpg",
+      "diretor": "James Wan",
+      "dataLancamento": "2023-12-22",
+      "nota": 7.5
+    },
+    {
+      "id": "bd01",
+      "titulo": "Superman",
+      "descricao": "Um herói cai a terra e nos salva",
+      "classificacao": "L",
+      "duracao": 143,
+      "genero": "Ação e Ficção",
+      "poster": "/posters/superman.webp",
+      "diretor": "Calvo",
+      "dataLancamento": "2025-10-10",
+      "nota": 8.2
+    },
+    {
+      "id": "6",
+      "titulo": "Invocação do Mal 4",
+      "descricao": "Os paranormais investigadores Ed e Lorraine Warren enfrentam seu caso mais assustador até agora. Uma entidade malévola e um segredo sombrio aterrorizam uma família infeliz.",
+      "classificacao": "18",
+      "duracao": 111,
+      "genero": "Terror/Sobrenatural",
+      "poster": "/posters/Invocação do mal4.webp",
+      "diretor": "Michael Chaves",
+      "dataLancamento": "2024-06-07",
+      "nota": 7.8
+    },
+    {
+      "id": "0379",
+      "titulo": "Gente Grande 2",
+      "descricao": "Filme de comédia sobre famílias em uma casa de ferias.",
+      "classificacao": "L",
+      "duracao": 123,
+      "genero": "Comedia",
+      "poster": "https://m.media-amazon.com/images/S/pv-target-images/392b9bacd220e1f1ef9db8046555e5b764289386386a05d83615657f8fe1c171.jpg",
+      "diretor": "LUIZÃO",
+      "dataLancamento": "2013-02-10",
+      "nota": 7.2
+    }
+  ],
+  "salas": [
+    {
+      "id": "1",
+      "numero": 1,
+      "capacidade": 100,
+      "tipo": "padrão",
+      "assentosOcupados": 19,
+      "vip": false,
+      "temperaturAC": null
+    },
+    {
+      "id": "2",
+      "numero": 2,
+      "capacidade": 120,
+      "tipo": "3D",
+      "assentosOcupados": 0,
+      "vip": false,
+      "temperaturAC": null
+    },
+    {
+      "id": "3",
+      "numero": 3,
+      "capacidade": 80,
+      "tipo": "padrão",
+      "assentosOcupados": 0,
+      "vip": false,
+      "temperaturAC": null
+    },
+    {
+      "id": "4",
+      "numero": 4,
+      "capacidade": 150,
+      "tipo": "IMAX",
+      "assentosOcupados": 0,
+      "vip": true,
+      "temperaturAC": 10
+    },
+    {
+      "id": "5",
+      "numero": 5,
+      "capacidade": 110,
+      "tipo": "4DX",
+      "assentosOcupados": 0,
+      "vip": true,
+      "temperaturAC": 10
+    },
+    {
+      "id": "6",
+      "numero": 6,
+      "capacidade": 90,
+      "tipo": "padrão",
+      "assentosOcupados": 0,
+      "vip": false,
+      "temperaturAC": null
+    },
+    {
+      "id": "7",
+      "numero": 7,
+      "capacidade": 100,
+      "tipo": "3D",
+      "assentosOcupados": 0,
+      "vip": false,
+      "temperaturAC": null
+    },
+    {
+      "id": "8",
+      "numero": 8,
+      "capacidade": 80,
+      "tipo": "padrão",
+      "assentosOcupados": 0,
+      "vip": false,
+      "temperaturAC": null
+    }
+  ],
+  "sessoes": [
+    {
+      "id": "1",
+      "filmeId": "1",
+      "salaId": "1",
+      "horario": "14:00",
+      "data": "2024-12-05",
+      "preco": 25,
+      "assentosDisponiveis": 81
+    },
+    {
+      "id": "2",
+      "filmeId": "2",
+      "salaId": "2",
+      "horario": "19:30",
+      "data": "2024-12-05",
+      "preco": 32,
+      "assentosDisponiveis": 120
+    },
+    {
+      "id": "3",
+      "filmeId": "3",
+      "salaId": "3",
+      "horario": "16:00",
+      "data": "2024-12-05",
+      "preco": 25,
+      "assentosDisponiveis": 80
+    },
+    {
+      "id": "4",
+      "filmeId": "4",
+      "salaId": "4",
+      "horario": "20:00",
+      "data": "2024-12-05",
+      "preco": 45,
+      "assentosDisponiveis": 150
+    },
+    {
+      "id": "5",
+      "filmeId": "5",
+      "salaId": "5",
+      "horario": "18:30",
+      "data": "2024-12-05",
+      "preco": 35,
+      "assentosDisponiveis": 110
+    },
+    {
+      "id": "6",
+      "filmeId": "6",
+      "salaId": "6",
+      "horario": "21:00",
+      "data": "2024-12-05",
+      "preco": 40,
+      "assentosDisponiveis": 90
+    },
+    {
+      "id": "7",
+      "filmeId": "bd01",
+      "salaId": "7",
+      "horario": "17:00",
+      "data": "2024-12-05",
+      "preco": 30,
+      "assentosDisponiveis": 100
+    },
+    {
+      "id": "8",
+      "filmeId": "0379",
+      "salaId": "8",
+      "horario": "15:30",
+      "data": "2024-12-05",
+      "preco": 25,
+      "assentosDisponiveis": 80
+    }
+  ],
+  "ingressos": [
+    {
+      "id": "444c",
+      "sessaoId": "1",
+      "assento": "A1",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "2791",
+      "sessaoId": "1",
+      "assento": "A10",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "406f",
+      "sessaoId": "1",
+      "assento": "A2",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "d929",
+      "sessaoId": "1",
+      "assento": "A3",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "f481",
+      "sessaoId": "1",
+      "assento": "A4",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "ec19",
+      "sessaoId": "1",
+      "assento": "A5",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "1c36",
+      "sessaoId": "1",
+      "assento": "A6",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "e9bd",
+      "sessaoId": "1",
+      "assento": "A7",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "101a",
+      "sessaoId": "1",
+      "assento": "A8",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "25bf",
+      "sessaoId": "1",
+      "assento": "A9",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "ab47",
+      "sessaoId": "1",
+      "assento": "B3",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "2eef",
+      "sessaoId": "1",
+      "assento": "C4",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "a058",
+      "sessaoId": "1",
+      "assento": "D5",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "0164",
+      "sessaoId": "1",
+      "assento": "E6",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "02f9",
+      "sessaoId": "1",
+      "assento": "F7",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "4ee9",
+      "sessaoId": "1",
+      "assento": "G8",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "d2da",
+      "sessaoId": "1",
+      "assento": "B4",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "f21e",
+      "sessaoId": "1",
+      "assento": "B5",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "f6b9",
+      "sessaoId": "1",
+      "assento": "B6",
+      "preco": 25,
+      "dataCompra": "2025-12-05",
+      "status": "vendido"
+    }
   ]
 }

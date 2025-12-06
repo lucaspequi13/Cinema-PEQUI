@@ -1,5 +1,6 @@
 import { Nav } from "./components/Nav"
 import { AppRouter } from "./routers/app.routers"
+import "./App.css"
 
 
 
