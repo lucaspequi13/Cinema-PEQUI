@@ -303,9 +303,7 @@ export function FilmesPages() {
         onClick={() => setFilmeSelected(null)}>
           {/* Card do modal */}
           <div style={{
-            background: 'linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/posters/Pequi fundos.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundColor: '#FFFFFF',
             borderRadius: '12px',
             maxWidth: '600px',
             width: '90%',

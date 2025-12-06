@@ -6,6 +6,13 @@
       "email": "lucas13@gmail.com",
       "senha": "123456",
       "status": "ativo"
+    },
+    {
+      "id": "dd40",
+      "nome": "fds",
+      "email": "fds@hotmail.com",
+      "senha": "123456",
+      "status": "ativo"
     }
   ],
   "filmes": [
@@ -31,7 +38,7 @@
       "poster": "/posters/homem-aranha.jpg",
       "diretor": "Jon Watts",
       "dataLancamento": "2021-12-16",
-      "nota": 9.0
+      "nota": 9
     },
     {
       "id": "3",
@@ -43,7 +50,7 @@
       "poster": "/posters/barbie.jpg",
       "diretor": "Greta Gerwig",
       "dataLancamento": "2023-07-21",
-      "nota": 8.0
+      "nota": 8
     },
     {
       "id": "4",
@@ -112,7 +119,7 @@
       "numero": 1,
       "capacidade": 100,
       "tipo": "padrão",
-      "assentosOcupados": 19,
+      "assentosOcupados": 23,
       "vip": false,
       "temperaturAC": null
     },
@@ -188,7 +195,7 @@
       "horario": "14:00",
       "data": "2024-12-05",
       "preco": 25,
-      "assentosDisponiveis": 81
+      "assentosDisponiveis": 77
     },
     {
       "id": "2",
@@ -405,6 +412,38 @@
       "assento": "B6",
       "preco": 25,
       "dataCompra": "2025-12-05",
+      "status": "vendido"
+    },
+    {
+      "id": "724a",
+      "sessaoId": "1",
+      "assento": "F10",
+      "preco": 25,
+      "dataCompra": "2025-12-06",
+      "status": "vendido"
+    },
+    {
+      "id": "c127",
+      "sessaoId": "1",
+      "assento": "F9",
+      "preco": 25,
+      "dataCompra": "2025-12-06",
+      "status": "vendido"
+    },
+    {
+      "id": "94db",
+      "sessaoId": "1",
+      "assento": "G10",
+      "preco": 25,
+      "dataCompra": "2025-12-06",
+      "status": "vendido"
+    },
+    {
+      "id": "c237",
+      "sessaoId": "1",
+      "assento": "G9",
+      "preco": 25,
+      "dataCompra": "2025-12-06",
       "status": "vendido"
     }
   ]
