@@ -303,7 +303,7 @@ export function FilmesPages() {
         onClick={() => setFilmeSelected(null)}>
           {/* Card do modal */}
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgba(144, 238, 144, 0.9)', // Verde suave com 90% opacidade
             borderRadius: '12px',
             maxWidth: '600px',
             width: '90%',
